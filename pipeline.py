@@ -24,4 +24,18 @@ def setup_logging(verbose=False):
         datefmt="%H:%M:%S",
     )
 
+def parse_arguments():
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Load, validate, clean, and save data from the command line."
+    )
+    parser.add_argument("-i", "--input", required=True,
+                        help="Path to the input file")
+    parser.add_argument("-o", "--output", required=True,
+                        help="Path to the output file")
+    parser.add_argument("--format", choices=["csv", "json"], default="csv",
+                        help="Output format (default: csv)")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Enable verbose logging")
+    return parser.parse_args()
 
