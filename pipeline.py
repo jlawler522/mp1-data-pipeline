@@ -39,3 +39,25 @@ def parse_arguments():
                         help="Enable verbose logging")
     return parser.parse_args()
 
+def validate_input(filepath):
+    """Check whether the input path exists and is a file."""
+    if Path(filepath).is_file():
+        logger.info("Input file validated: %s", filepath)
+        return True
+    logger.error("Input file not found: %s", filepath)
+    return False
+
+def main():
+    """Main pipeline function."""
+    args = parse_arguments()
+    setup_logging(args.verbose)
+    logger.debug(
+        "Arguments parsed: input=%s, output=%s, format=%s",
+        args.input, args.output, args.format,
+    )
+    if not validate_input(args.input):
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
