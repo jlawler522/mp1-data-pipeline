@@ -17,3 +17,6 @@ venv/
 # Pipeline outputs
 *.csv
 !fixtures/*.csv
+
+# Pipeline output
+output/
